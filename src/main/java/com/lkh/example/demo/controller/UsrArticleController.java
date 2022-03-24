@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lkh.example.demo.service.ArticleService;
 import com.lkh.example.demo.vo.Article;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +20,8 @@ import lombok.NoArgsConstructor;
 
 @Controller
 public class UsrArticleController {
+	@Autowired
+	private ArticleService articleService;
 	private List<Article> articles;
 	private int articlesLastId;
 	
