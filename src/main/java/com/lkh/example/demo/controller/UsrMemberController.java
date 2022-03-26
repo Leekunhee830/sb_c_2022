@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lkh.example.demo.service.MemberService;
+import com.lkh.example.demo.vo.Member;
+
 
 
 @Controller
@@ -17,9 +19,12 @@ public class UsrMemberController {
 	
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(String loginId,String loginPw,String name,String nickname,String cellphoneNo,String email) {
-		memberService.join(loginId,loginPw,name,nickname,cellphoneNo,email);
-		return "안녕하세요.";
+	public Member doJoin(String loginId,String loginPw,String name,String nickname,String cellphoneNo,String email) {
+		int id=memberService.join(loginId,loginPw,name,nickname,cellphoneNo,email);
+		
+		Member member=memberService.getMemberById(id);
+		
+		return member;
 	}
 	
 }
