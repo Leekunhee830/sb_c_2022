@@ -43,10 +43,10 @@ public class UsrMemberController {
 		int id=memberService.join(loginId,loginPw,name,nickname,cellphoneNo,email);
 		
 		if(id==-1) {
-			return "해당 로그인아이디는 이미 사용중입니다.";
+			return "해당 로그인아이디("+loginId+")는 이미 사용중입니다.";
 		}
 		if(id==-2) {
-			return "해당 이름과 이메일은 이미 사용중입니다.";
+			return "해당 이름("+name+")과 이메일("+email+")은 이미 사용중입니다.";
 		}
 		
 		Member member=memberService.getMemberById(id);
