@@ -19,7 +19,7 @@
 	<select id="getArticles" resultType="Article">
 		SELECT * 
 		FROM article 
-		ORDER BY id=#{id} 
+		ORDER BY id
 		DESC
 	</select>
 	
