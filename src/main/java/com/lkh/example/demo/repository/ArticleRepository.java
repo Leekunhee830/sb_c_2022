@@ -17,7 +17,7 @@ import com.lkh.example.demo.vo.Article;
 public interface ArticleRepository {
 	
 	//insert into article set regdate = NOW(), updateDate = NOW() , title = ? , body = ?
-	public void writeArticle(@Param("title") String title,@Param("body") String body);
+	public void writeArticle(@Param("memberId") int memberId,@Param("title") String title,@Param("body") String body);
 	
 	//select * from article where id = ?
 	public Article getArticle(@Param("id") int id);
