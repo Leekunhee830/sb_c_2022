@@ -77,12 +77,28 @@ public class UsrArticleController {
 	
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
-	public ResultData<Article> doDelete(int id) {
+	public ResultData<Article> doDelete(HttpSession httpSession, int id) {
 		Article article=articleService.getArticle(id);
+		boolean isLogined =false;
+		int loginedMemberId=0;
 		
 		if(article==null) {
 			return ResultData.from("F-1",Ut.f("%d번 게시물은 존재하지 않습니다.", id));
 		}
+		
+		if(httpSession.getAttribute("loginedMemberId")!=null) {
+			isLogined=true;
+			loginedMemberId=(int)httpSession.getAttribute("loginedMemberId");
+		}
+		
+		if(isLogined==false) {
+			return ResultData.from("F-A", "로그인 후 이용해주세요.");
+		}
+		
+		if(loginedMemberId!=article.getMemberId()) {
+			return ResultData.from("F-2","삭제 권한이 없습니다.");
+		}
+		
 		
 		articleService.deleteArticle(id);
 		return ResultData.from("S-1",Ut.f("%d번 게시물을 삭제하였습니다.", id),article);
