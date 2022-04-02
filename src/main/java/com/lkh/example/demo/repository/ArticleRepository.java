@@ -19,6 +19,14 @@ public interface ArticleRepository {
 	public void writeArticle(@Param("memberId") int memberId, @Param("title") String title, @Param("body") String body);
 
 	// select * from article where id = ?
+	@Select("""
+			SELECT A.*,
+			M.nickname AS extra__writerName
+			FROM article AS A
+			LEFT JOIN member AS M
+			ON A.memberId=M.id
+			where A.id = #{id}
+			""")
 	public Article getArticle(@Param("id") int id);
 
 	// delete from article where id = ?
