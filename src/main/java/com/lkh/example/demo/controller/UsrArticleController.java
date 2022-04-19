@@ -37,7 +37,7 @@ public class UsrArticleController {
 		}
 		
 
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId());
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(),boardId);
 		
 		model.addAttribute("board",board);
 		model.addAttribute("articles", articles);
