@@ -16,7 +16,7 @@ public interface ArticleRepository {
 
 	// insert into article set regdate = NOW(), updateDate = NOW() , title = ? ,
 	// body = ?
-	public void writeArticle(@Param("memberId") int memberId, @Param("title") String title, @Param("body") String body);
+	public void writeArticle(@Param("memberId") int memberId,@Param("boardId") int boardId ,@Param("title") String title, @Param("body") String body);
 
 	// select * from article where id = ?
 	@Select("""
