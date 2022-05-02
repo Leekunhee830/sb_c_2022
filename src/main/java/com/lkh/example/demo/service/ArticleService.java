@@ -84,7 +84,7 @@ public class ArticleService {
 		return ResultData.from("S-1", "수정가능합니다.");
 	}
 	
-	public ResultData actorCanDelete(int actorId, Article article) {
+	public ResultData<Integer> actorCanDelete(int actorId, Article article) {
 		if(article==null) {
 			return ResultData.from("F-1", "권환이 없습니다.");
 		}
@@ -98,6 +98,14 @@ public class ArticleService {
 
 	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
 		return articleRepository.getArticlesCount(boardId,searchKeywordTypeCode,searchKeyword);
+	}
+
+	public ResultData increaseHitCount(int id) {
+		int affectedRowsCount= articleRepository.increaseHitCount(id);
+		if(affectedRowsCount==0) {
+			return ResultData.from("F-1", "해당 게시물이 존재하지 않습니다.","affectedRowsCount",affectedRowsCount);
+		}
+		return ResultData.from("S-1", "조회수가 증가되었습니다.","affectedRowsCount",affectedRowsCount);
 	}
 	
 }

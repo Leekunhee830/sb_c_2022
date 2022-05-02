@@ -102,4 +102,11 @@ public interface ArticleRepository {
 			</script>
 				""")
 	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword);
+	
+	@Update("""
+			UPDATE article
+			SET hitCount=hitCount+1
+			WHERE id=#{id}
+			""")
+	public int increaseHitCount(int id);
 }
